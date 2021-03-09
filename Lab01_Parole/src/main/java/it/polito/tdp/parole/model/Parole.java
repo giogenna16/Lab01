@@ -11,6 +11,8 @@ public class Parole {
 		
 	public Parole() {
 		this.listaParole= new LinkedList<>();
+		//this.listaParole= new ArrayList<>();
+		
 	}
 	
 	public void addParola(String p) {
@@ -19,6 +21,7 @@ public class Parole {
 	
 	public List<String> getElenco() {
 		List<String> temp= new LinkedList<>(this.listaParole);
+		//List<String> temp= new ArrayList<>(this.listaParole);
 		ComparatoreDiParole c= new ComparatoreDiParole();
 		
 		Collections.sort(temp, c);

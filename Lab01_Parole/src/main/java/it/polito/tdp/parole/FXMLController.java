@@ -34,13 +34,19 @@ public class FXMLController {
     
     @FXML
     private Button btnDelete;
+    
+    @FXML
+    private TextArea txtTempi;
 
     @FXML
     void doInsert(ActionEvent event) {
+    	
     	String s= this.txtParola.getText();
     	String paroleElenco="";
-    	elenco.addParola(s);
     	
+    	long tempoIniziale=System.nanoTime();
+    	elenco.addParola(s);
+    	long tempoFinale=System.nanoTime();
     	
     	for(String temp: this.elenco.getElenco())
     		paroleElenco+=temp+"\n";
@@ -48,27 +54,39 @@ public class FXMLController {
     	
     	this.txtResult.setText(paroleElenco);
     	this.txtParola.setText("");
+    	
+    	
+    	this.txtTempi.setText("Il tempo di esecuzione del comando è pari a "+(tempoFinale-tempoIniziale)+" nanosecondi");
     
     }
 
     @FXML
     void doReset(ActionEvent event) {
+    	
     	elenco.reset();
     	this.txtParola.setText("");
     	this.txtResult.setText("");
+    	this.txtTempi.setText("");
     }
     
     @FXML
     void doDelete(ActionEvent event) {
+    	
     	String s = this.txtResult.getSelectedText();
+    	
     	String paroleElenco="";
+    	
+    	long tempoIniziale=System.nanoTime();
     	elenco.delete(s);
+    	long tempoFinale=System.nanoTime();
     	
     	for(String temp: this.elenco.getElenco())
     		paroleElenco+=temp+"\n";
     	
     	this.txtResult.setText(paroleElenco);
     	
+    	
+    	this.txtTempi.setText("Il tempo di esecuzione del comando è pari a "+(tempoFinale-tempoIniziale)+" nanosecondi");
     }
 
     @FXML
