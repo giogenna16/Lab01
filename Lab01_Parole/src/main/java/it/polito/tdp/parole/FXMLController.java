@@ -31,15 +31,44 @@ public class FXMLController {
 
     @FXML
     private Button btnReset;
+    
+    @FXML
+    private Button btnDelete;
 
     @FXML
     void doInsert(ActionEvent event) {
-    	// TODO
+    	String s= this.txtParola.getText();
+    	String paroleElenco="";
+    	elenco.addParola(s);
+    	
+    	
+    	for(String temp: this.elenco.getElenco())
+    		paroleElenco+=temp+"\n";
+    		
+    	
+    	this.txtResult.setText(paroleElenco);
+    	this.txtParola.setText("");
+    
     }
 
     @FXML
     void doReset(ActionEvent event) {
-    	// TODO
+    	elenco.reset();
+    	this.txtParola.setText("");
+    	this.txtResult.setText("");
+    }
+    
+    @FXML
+    void doDelete(ActionEvent event) {
+    	String s = this.txtResult.getSelectedText();
+    	String paroleElenco="";
+    	elenco.delete(s);
+    	
+    	for(String temp: this.elenco.getElenco())
+    		paroleElenco+=temp+"\n";
+    	
+    	this.txtResult.setText(paroleElenco);
+    	
     }
 
     @FXML
